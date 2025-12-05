@@ -1,0 +1,3646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex-Tech Shop - Abonnements Pro & Formations</title>
+  <meta name="description" content="Abonnements professionnels premium à prix réduit : ChatGPT, Capcut, Canva Pro, VPN, Streaming et plus encore">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       VARIABLES & RESET
+    ============================================ */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #10b981;
+      --accent: #f59e0b;
+      --background: #f8fafc;
+      --foreground: #0f172a;
+      --card: #ffffff;
+      --card-foreground: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --whatsapp: #25d366;
+      --danger: #ef4444;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       UTILITIES
+    ============================================ */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Style pour les boutons de durée */
+    .duration-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .duration-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .duration-btn.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .duration-price {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .duration-btn.active .duration-price {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .duration-savings {
+      font-size: 0.75rem;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    /* Style pour les boutons de plan */
+    .plan-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .plan-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .plan-btn.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .plan-price {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .plan-btn.active .plan-price {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ============================================
+       HEADER
+    ============================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .logo-text span {
+      color: var(--primary);
+    }
+
+    .nav {
+      display: none;
+      gap: 2rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: var(--primary);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .cart-btn:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cart-btn.shake {
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--danger);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    .cart-count.visible {
+      transform: scale(1);
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--foreground);
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--foreground);
+      font-weight: 500;
+      border-radius: var(--radius);
+      transition: background 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--background);
+      color: var(--primary);
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 76px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      animation: slideInUp 0.6s ease;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: slideInUp 0.6s ease 0.1s both;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideInUp 0.6s ease 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      animation: slideInUp 0.6s ease 0.3s both;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      animation: slideInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+      animation: heroFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+      animation: slideInUp 0.6s ease 0.5s both;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ============================================
+       PRODUCTS SECTION
+    ============================================ */
+    .products {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-title span {
+      color: var(--primary);
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-tab {
+      padding: 0.625rem 1.25rem;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .product-card.hidden {
+      display: none;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    .product-badge.new {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .product-badge.hot {
+      background: var(--danger);
+      color: white;
+    }
+
+    .product-badge.promo {
+      background: var(--accent);
+      color: white;
+    }
+
+    .product-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+
+    .quick-view-btn {
+      background: white;
+      color: var(--foreground);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover .quick-view-btn {
+      transform: translateY(0);
+    }
+
+    .product-info {
+      padding: 1.25rem;
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--card-foreground);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .product-description {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .product-price .old-price {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+      font-weight: 400;
+    }
+
+    .add-to-cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.625rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .add-to-cart-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ============================================
+       PRODUCT DETAIL MODAL
+    ============================================ */
+    .product-detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 400;
+      backdrop-filter: blur(5px);
+    }
+
+    .product-detail-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .product-detail-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      width: 90%;
+      max-width: 1000px;
+      max-height: 90vh;
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      z-index: 401;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .product-detail-modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .product-detail-content {
+      position: relative;
+      height: 100%;
+    }
+
+    .product-detail-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .product-detail-close:hover {
+      background: white;
+      transform: rotate(90deg);
+      box-shadow: var(--shadow);
+    }
+
+    .product-detail-main {
+      padding: 2rem;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .product-detail-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .product-detail-images {
+      position: relative;
+    }
+
+    .product-detail-main-image {
+      width: 100%;
+      height: 300px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    }
+
+    @media (min-width: 768px) {
+      .product-detail-main-image {
+        height: 400px;
+      }
+    }
+
+    .product-detail-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-detail-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .product-detail-badge.new {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .product-detail-badge.hot {
+      background: var(--danger);
+      color: white;
+    }
+
+    .product-detail-badge.promo {
+      background: var(--accent);
+      color: white;
+    }
+
+    .product-detail-info {
+      padding: 1rem 0;
+    }
+
+    .product-detail-category {
+      font-size: 0.875rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-detail-name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--card-foreground);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .product-detail-price {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-detail-current {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .product-detail-old {
+      font-size: 1.25rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+
+    .product-detail-description {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .product-detail-features {
+      margin-bottom: 2rem;
+    }
+
+    .product-detail-features h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--card-foreground);
+    }
+
+    .product-detail-features ul {
+      list-style: none;
+    }
+
+    .product-detail-features li {
+      padding: 0.5rem 0;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .product-detail-features li::before {
+      content: "✓";
+      color: var(--secondary);
+      font-weight: bold;
+      margin-top: 0.125rem;
+    }
+
+    .product-detail-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .product-detail-actions {
+        flex-direction: row;
+      }
+    }
+
+    .product-detail-add-btn {
+      flex: 1;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .product-detail-add-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-detail-buy-btn {
+      flex: 1;
+      padding: 1rem;
+      background: var(--whatsapp);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .product-detail-buy-btn:hover {
+      background: #20bd5a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Style spécifique pour les descriptions détaillées */
+    .product-full-description {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .product-full-description h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--card-foreground);
+    }
+
+    .product-full-description h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 1rem;
+      color: var(--card-foreground);
+    }
+
+    .product-full-description p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .product-full-description ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-full-description li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .product-full-description li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .product-detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+    }
+
+    .product-detail-table th,
+    .product-detail-table td {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .product-detail-table th {
+      background: var(--background);
+      font-weight: 600;
+      color: var(--card-foreground);
+    }
+
+    .product-detail-table td button {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    /* ============================================
+       CART MODAL
+    ============================================ */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 200;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      background: white;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-modal.active {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--background);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .cart-close-btn:hover {
+      background: var(--border);
+      transform: rotate(90deg);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .cart-empty svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--background);
+      border-radius: var(--radius);
+      margin-bottom: 0.75rem;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .quantity-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .cart-item-quantity {
+      font-weight: 600;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      padding: 0.25rem;
+      margin-left: auto;
+      transition: transform 0.2s ease;
+    }
+
+    .cart-item-remove:hover {
+      transform: scale(1.2);
+    }
+
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--background);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .cart-total-label {
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .cart-total-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--whatsapp);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #20bd5a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .clear-cart-btn {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .clear-cart-btn:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    /* ============================================
+       WHATSAPP FLOATING BUTTON
+    ============================================ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 90;
+    }
+
+    .whatsapp-btn {
+      width: 60px;
+      height: 60px;
+      background: var(--whatsapp);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    .whatsapp-btn svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background: var(--foreground);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      max-width: 300px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .footer-logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .footer-description {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-copyright {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: #1e293b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* ============================================
+       TOAST NOTIFICATIONS
+    ============================================ */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: var(--foreground);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: toastIn 0.3s ease;
+      min-width: 280px;
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--secondary);
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .toast.hiding {
+      animation: toastOut 0.3s ease forwards;
+    }
+
+    @keyframes toastOut {
+      to {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    /* ============================================
+       RESPONSIVE STYLES
+    ============================================ */
+    @media (min-width: 640px) {
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+      }
+
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 2rem;
+      }
+
+      .nav {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: none !important;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-description {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .hero-buttons {
+        justify-content: flex-start;
+      }
+
+      .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================
+       HEADER
+  ============================================ -->
+  <header class="header" id="header">
+    <div class="container header-content">
+      <a href="#" class="logo">
+       <div style="
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+">
+  <img src="https://i.ibb.co/cKX8NSbc/1f769d8e-b6d0-4a2b-a51c-cd823a64547f.png" 
+       alt="Logo" 
+       style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+        <div class="logo-text">Flex-<span>Tech</span></div>
+      </a>
+
+      <nav class="nav">
+        <a href="#accueil">Accueil</a>
+        <a href="#produits">Produits</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-btn" id="cart-btn" aria-label="Ouvrir le panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="#accueil">Accueil</a>
+    <a href="#produits">Produits</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+<!-- ============================================
+       HERO SECTION
+  ============================================ -->
+  <section class="hero" id="accueil">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            Nouvelle Collection 2025
+          </div>
+          <h1 class="hero-title">
+            Abonnements Pro <span>à Prix Réduit</span>
+          </h1>
+          <p class="hero-description">
+            ChatGPT, Capcut, Canva Pro, VPN, Streaming et plus encore. Accès premium à des outils professionnels avec économies garanties.
+          </p>
+          <div class="hero-buttons">
+            <a href="#produits" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              Voir les produits
+            </a>
+          </div>
+          
+          <div class="payment-guide" style="margin-top: 2rem; text-align: center;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--foreground);">
+              <b>Comment payer mon abonnement ?</b>
+            </h3>
+            <p style="color: var(--muted); margin-bottom: 1rem;">Suivez cette vidéo guide :</p>
+            
+            <div style="position: relative; width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: 56.25%;">
+              <iframe 
+                src="https://www.youtube.com/embed/VIDEO_ID_HERE?rel=0&autoplay=0&mute=0&vq=highres" 
+                title="Guide de paiement Flex-Tech" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--radius);">
+              </iframe>
+            </div>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">1000+</div>
+              <div class="stat-label">Clients satisfaits</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">Produits Premium</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">99%</div>
+              <div class="stat-label">Disponibilité</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img 
+            src="https://i.ibb.co/NdPDGXqt/Picsart-25-12-01-10-56-00-080.jpg" 
+            alt="Flex-Tech workspace" 
+            height="500" 
+            width="500"
+            style="object-fit: cover; border-radius: 12px;"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCTS SECTION
+  ============================================ -->
+  <section class="products" id="produits">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nos <span>Produits</span> Premium</h2>
+        <p class="section-description">
+          Découvrez notre sélection d'abonnements professionnels à prix réduit. Qualité garantie et livraison instantanée.
+        </p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">Tous les produits</button>
+        <button class="filter-tab" data-filter="IA">Intelligence Artificielle</button>
+        <button class="filter-tab" data-filter="Design & videos">Design & Vidéo</button>
+        <button class="filter-tab" data-filter="VPN">VPN & Sécurité</button>
+        <button class="filter-tab" data-filter="Streaming">Streaming</button>
+      </div>
+
+      <div class="products-grid" id="products-grid">
+        <!-- Produits injectés par JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FAQ SECTION
+  ============================================ -->
+  <section class="products" id="faq" style="background: var(--background);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Questions <span>Fréquentes</span></h2>
+        <p class="section-description">
+          Tout ce que vous devez savoir avant d'acheter
+        </p>
+      </div>
+
+      <div class="faq-content" style="max-width: 800px; margin: 0 auto;">
+        <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground);">📌 Comment passer une commande ?</h3>
+            <p style="color: var(--muted); line-height: 1.7;">
+              1. Choisissez votre abonnement<br>
+              2. Ajoutez au panier ou cliquez sur "Acheter maintenant"<br>
+              3. Remplissez vos informations (email, WhatsApp)<br>
+              4. Payez via Orange Money, MTN, PayPal ou Visa<br>
+              5. Recevez vos accès par WhatsApp/email sous 30 minutes
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground);">⚡ Quelle est la durée de livraison ?</h3>
+            <p style="color: var(--muted); line-height: 1.7;">
+              • <strong>Création de compte</strong> : jusqu'à 2 heures maximum<br>
+              • <strong>Heures de pointe</strong> : délais pouvant atteindre 4 heures<br>
+              • <strong>Support 24/7</strong> : même les week-ends et jours fériés
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground);">🔐 Les comptes sont-ils fiables ?</h3>
+            <p style="color: var(--muted); line-height: 1.7;">
+              ✅ Tous les comptes sont authentiques et testés<br>
+              ✅ Livrés avec accès complet et immédiat<br>
+              ✅ Remplacement gratuit en cas de problème<br>
+              ✅ Garantie de validité selon la durée du produit<br>
+              ✅ Support technique inclus
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground);">💳 Quels moyens de paiement ?</h3>
+            <p style="color: var(--muted); line-height: 1.7;">
+              • <strong>Mobile Money</strong> : Orange Money,Wave, MTN Money, Moov Money<br>
+              • <strong>PayPal</strong> : Comptes vérifiés<br>
+              • <strong>Crypto/Binance</strong> : Bitcoin, USDT (sur demande)<br>
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground);">🛡️ Y a-t-il une garantie ?</h3>
+            <p style="color: var(--muted); line-height: 1.7;">
+              <strong>Oui, garantie incluse sur tous les produits :</strong><br>
+              • Remplacement gratuit en cas de problème (après verification)<br>
+              • Support technique 7j/7<br>
+              • Assistance à l'installation si nécessaire<br>
+              • Mises à jour gratuites pendant la durée de l'abonnement
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div style="
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+">
+  <img src="https://i.ibb.co/cKX8NSbc/1f769d8e-b6d0-4a2b-a51c-cd823a64547f.png" 
+       alt="Logo" 
+       style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+            <div class="footer-logo-text">Flex-Tech</div>
+          </div>
+          <p class="footer-description">
+            Votre partenaire pour les abonnements professionnels à prix réduit. Qualité, fiabilité et support exceptionnel.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#produits">Produits</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="https://wa.me/22656853244" target="_blank">WhatsApp Support</a></li>
+            <li><a href="mailto:support@flex-tech.com">Email Support</a></li>
+            <li><a href="#faq">Centre d'aide</a></li>
+            <li><a href="#contact">Contact direct</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#conditions">Conditions d'utilisation</a></li>
+            <li><a href="#confidentialite">Confidentialité</a></li>
+            <li><a href="#garantie">Garanties</a></li>
+            <li><a href="#paiement">Paiements sécurisés</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Flex-Tech Shop. Tous droits réservés. Les marques mentionnées sont la propriété de leurs détenteurs respectifs.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/22656853244" target="_blank" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       PRODUCT DETAIL MODAL
+  ============================================ -->
+  <div class="product-detail-overlay" id="product-detail-overlay"></div>
+  <div class="product-detail-modal" id="product-detail-modal">
+    <div class="product-detail-content">
+      <button class="product-detail-close" id="product-detail-close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      
+      <div class="product-detail-main" id="product-detail-main">
+        <!-- Contenu injecté dynamiquement -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       CART MODAL
+  ============================================ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-header">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mon Panier
+      </h2>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Fermer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty" id="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <p>Votre panier est vide</p>
+        <span style="font-size: 0.875rem;">Ajoutez des produits pour commencer</span>
+      </div>
+    </div>
+
+    <div class="cart-footer" id="cart-footer" style="display: none;">
+      <div class="cart-total">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-amount" id="cart-total">0 FCFA</span>
+      </div>
+     <!-- COPIEZ-CE CODE -->
+<a href="https://flex-techshop.github.io/instructions-pour-payer-/" 
+   class="checkout-btn" 
+   id="checkout-btn">
+  Payer Maintenant
+</a>
+
+<style>
+  .checkout-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+  }
+  
+  .checkout-btn:hover {
+    background: #45a049;
+  }
+</style>
+      <button class="clear-cart-btn" id="clear-cart-btn">Vider le panier</button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       WHATSAPP FLOATING BUTTON
+  ============================================ -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/22656853244" target="_blank" class="whatsapp-btn" aria-label="Nous contacter sur WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ============================================
+       TOAST CONTAINER
+  ============================================ -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================ -->
+  <script>
+    // ============================================
+    // DATA - Products
+    // ============================================
+    const products = [
+      {
+        id: 1,
+        name: "Capcut Pro",
+        description: "Montage vidéo professionnel avec effets premium",
+        price: 3000,
+        oldPrice: 7000,
+        category: "Design & videos",
+        badge: "hot",
+        image: "https://i.ibb.co/h1JHmRX0/IMG-20251105-WA0004-1.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "1 Mois", price: 3000, duration: 1 },
+          { name: "12 Mois", price: 30000, duration: 12, savings: "(Économisez 17%)" }
+        ]
+      },
+      {
+        id: 2,
+        name: "ChatGPT Plus",
+        description: "Accès à GPT-4 et fonctionnalités avancées",
+        price: 4000,
+        category: "IA",
+        badge: "hot",
+        image: "https://i.ibb.co/HDjyKdPq/80628b8866ebeb56acfb29fc4eb46999.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "1 Mois", price: 4000, duration: 1 }
+        ]
+      },
+      {
+        id: 3,
+        name: "Canva Pro",
+        description: "Design professionnel avec ressources illimitées",
+        price: 4000,
+        oldPrice: 20000,
+        category: "Design & videos",
+        badge: "promo",
+        image: "https://i.ibb.co/zWpqkJLy/973a9af24b3aec8e40369cf842293f07.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "12 Mois", price: 4000, duration: 12, savings: "(Économisez 80%)" }
+        ]
+      },
+      {
+        id: 4,
+        name: "Veo3 Promo Étudiant",
+        description: "Génération vidéo IA de haute qualité - Offre limitée",
+        price: 2500,
+        category: "IA",
+        badge: "promo",
+        image: "https://i.ibb.co/fzdsWWjT/625567213aaedc3b0211bb76747305e0.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "12 Mois", price: 2500, duration: 12, note: "Se termine le 9 décembre" }
+        ]
+      },
+      {
+        id: 5,
+        name: "Veo3 Ultra Plan",
+        description: "Plan ultime pour création vidéo IA avancée",
+        price: 5000,
+        category: "IA",
+        badge: "new",
+        image: "https://i.ibb.co/5hF7gWWN/8be5712dd055a3a3211db2d246be5d11.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "1 Mois", price: 5000, duration: 1 }
+        ]
+      },
+      {
+        id: 6,
+        name: "Kling AI",
+        description: "Génération vidéo IA nouvelle génération",
+        price: 5000,
+        badge: "new",
+        category: "IA",
+        image: "https://i.ibb.co/0pLXtsqq/d1a7c96cd8eeb91bac6de13595df2254.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "Standard", price: 5000, duration: 1 },
+          { name: "Pro", price: 19000, duration: 1, savings: "(Premium)" }
+        ]
+      },
+      {
+        id: 7,
+        name: "Leonardo AI",
+        description: "Génération d'images IA artistiques",
+        price: 7000,
+        oldPrice: 11000,
+        category: "IA",
+        badge: "hot",
+        image: "https://i.ibb.co/4wkKmc02/35c6020d4699995dbbc785640d6cbfce.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "1 Mois", price: 7000, duration: 1 }
+        ]
+      },
+      {
+        id: 8,
+        name: "ElevenLabs",
+        description: "Synthèse vocale IA professionnelle",
+        price: 2500,
+        oldPrice: 3500,
+        category: "IA",
+        badge: "promo",
+        image: "https://i.ibb.co/KzsfXxmp/6d43f2cf2d72d41441dec020b9514f99.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "Standard", price: 2500, duration: 1 },
+          { name: "Créateur", price: 8000, duration: 1, savings: "(Premium)" }
+        ]
+      },
+      {
+        id: 9,
+        name: "Midjourney",
+        description: "Génération d'art IA par mots-clés",
+        price: 7000,
+        category: "IA",
+        image: "https://i.ibb.co/76W0NrZ/images-8.png",
+        hasPlans: true,
+        plans: [
+          { name: "Basic", price: 7000, duration: 1 },
+          { name: "Standard", price: 9500, duration: 1, savings: "(Premium)" }
+        ]
+      },
+      {
+        id: 10,
+        name: "Nord VPN",
+        description: "Protection complète et anonymat en ligne",
+        price: 4990,
+        oldPrice: 6500,
+        category: "VPN",
+        badge: "hot",
+        image: "https://i.ibb.co/wNLyfx5w/dd8d91def1a4102a605e46347dbc7cb7.jpg"
+      },
+      {
+        id: 11,
+        name: "Express VPN",
+        description: "VPN ultra-rapide avec serveurs mondiaux",
+        price: 4990,
+        category: "VPN",
+        image: "https://i.ibb.co/VcgJPMp9/d70c34343b49603845e829ce0e3d45d0.jpg"
+      },
+      {
+        id: 12,
+        name: "Surfshark VPN",
+        description: "VPN illimité pour tous vos appareils",
+        price: 3890,
+        oldPrice: 5000,
+        category: "VPN",
+        badge: "hot",
+        image: "https://i.ibb.co/Z64tVRdW/36b601bc20e8eb347ba4ca623b067e01.jpg"
+      },
+      {
+        id: 13,
+        name: "Netflix Premium",
+        description: "Accès complet à toutes les séries et films",
+        price: 3000,
+        category: "Streaming",
+        badge: "promo",
+        image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 14,
+        name: "Prime Video",
+        description: "Films et séries exclusifs Amazon",
+        price: 1500,
+        category: "Streaming",
+        image: "https://i.ibb.co/qLdvgQgC/5143d8dc5806db472e1e77382288b3de.jpg"
+      },
+      {
+        id: 15,
+        name: "IPTV Premium",
+        description: "Plus de 15 000 chaînes TV en direct",
+        price: 3500,
+        oldPrice: 5000,
+        category: "Streaming",
+        badge: "promo",
+        image: "https://i.ibb.co/gLWXpzsJ/18383c0097d35bdff9ae376d2d286c62.jpg"
+      },
+      {
+        id: 16,
+        name: "Minimax Audio",
+        description: "Text-to-speech IA de haute qualité",
+        price: 4000,
+        category: "IA",
+        image: "https://i.ibb.co/5fymHCF/images-22.jpg",
+        hasPlans: true,
+        plans: [
+          { name: "Starter", price: 4000, duration: 1 },
+          { name: "Créateur", price: 10000, duration: 1, savings: "(Premium)" }
+        ]
+      },
+      {
+        id: 17,
+        name: "Ideogram",
+        description: "Génération d'images et designs IA",
+        price: 6000,
+        category: "IA",
+        image: "https://i.ibb.co/GQ2Xkh95/images-9.png",
+        hasPlans: true,
+        plans: [
+          { name: "Basic", price: 6000, duration: 1 },
+          { name: "Plus", price: 10000, duration: 1, savings: "(Premium)" }
+        ]
+      },
+      {
+        id: 18,
+        name: "Piclumen Pro",
+        description: "Édition photo avancée avec effets uniques",
+        price: 5500,
+        oldPrice: 7000,
+        category: "Design & videos",
+        badge: "hot",
+        image: "https://i.ibb.co/Y78qT9Lw/images-26.jpg"
+      }
+    ];
+
+    // ============================================
+    // PRODUCT DETAILS DATA
+    // ============================================
+    const productDetails = {
+      1: {
+        name: "Capcut Pro - Abonnement Premium",
+        category: "Design & Vidéo • Montage Professionnel",
+        description: "Montez vos vidéos de façon plus professionnelle avec la version Pro de Capcut. Accédez à toutes les fonctionnalités avancées de montage vidéo.",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Qu'est-ce que Capcut Premium ?</h2>
+            <p>Capcut Premium est la version améliorée de la célèbre application de montage vidéo. Elle vous donne accès à des fonctionnalités avancées, des modèles exclusifs, des options d'exportation haute qualité et une bibliothèque complète d'effets et de transitions. Avec cet abonnement, vous pouvez créer des vidéos professionnelles directement depuis votre téléphone ou votre ordinateur, sans aucune limite.</p>
+            
+            <h3>Fonctionnalités clés :</h3>
+            <ul>
+              <li>Débloquez tous les effets, filtres et transitions premium</li>
+              <li>Exportez vos vidéos en haute résolution sans filigrane</li>
+              <li>Accédez à des outils de montage avancés pour des résultats fluides et cinématographiques</li>
+              <li>Modèles tendance exclusifs pour TikTok Reels et YouTube Shorts</li>
+              <li>Stockage cloud pour sauvegarder et synchroniser facilement vos projets</li>
+            </ul>
+
+            <h3>Formules d'abonnement flexibles :</h3>
+            <p>Vous avez le choix entre :</p>
+            <ul>
+              <li><strong>Formule 1 mois à 3 000 FCFA</strong> - Idéale pour les besoins ponctuels ou pour tester les fonctionnalités premium</li>
+              <li><strong>Formule 12 mois à 30 000 FCFA</strong> - Offrant le meilleur rapport qualité-prix avec un accès complet pendant un an</li>
+            </ul>
+
+            <p><strong>Livraison :</strong> Compte livré sous 30 minutes<br>
+            <strong>Support :</strong> Assistance technique incluse<br>
+            <strong>Garantie :</strong> Remplacement gratuit en cas de problème</p>
+          </div>
+        `,
+        features: [
+          "Montage vidéo avancé",
+          "Effets et transitions exclusifs",
+          "Export 4K sans filigrane",
+          "Modèles professionnels",
+          "Stockage cloud inclus"
+        ]
+      },
+      2: {
+        name: "ChatGPT Plus - Abonnement Mensuel",
+        category: "Intelligence Artificielle • Assistant IA",
+        description: "Accédez à ChatGPT-4, des réponses plus rapides et des fonctionnalités avancées d'IA pour votre productivité.",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>ChatGPT Plus - L'intelligence artificielle à son maximum</h2>
+            <p>Profitez de l'accès prioritaire à GPT-4, la version la plus avancée de notre modèle d'IA, même pendant les heures de pointe. L'abonnement ChatGPT Plus vous offre une expérience améliorée avec des performances supérieures.</p>
+            
+            <h3>Avantages exclusifs :</h3>
+            <ul>
+              <li>Accès à GPT-4, notre modèle le plus capable</li>
+              <li>Réponses jusqu'à 2x plus rapides</li>
+              <li>Accès prioritaire aux nouvelles fonctionnalités</li>
+              <li>Disponibilité même pendant les heures de pointe</li>
+              <li>Support prioritaire</li>
+              <li>Plugins et fonctionnalités avancées</li>
+            </ul>
+
+            <h3>Plan d'abonnement :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Durée</th>
+                <th>Prix</th>
+                <th>Fonctionnalités</th>
+              </tr>
+              <tr>
+                <td>Mensuel</td>
+                <td>4 000 FCFA</td>
+                <td>Accès complet à GPT-4</td>
+              </tr>
+            </table>
+
+            <h3>Support et garantie :</h3>
+            <p>Compte livré sous 30 minutes après paiement. Garantie de remplacement sous 24h en cas de problème.</p>
+          </div>
+        `,
+        features: [
+          "GPT-4 Turbo",
+          "Réponses ultra-rapides",
+          "Plugins avancés",
+          "Support prioritaire",
+          "Pas de limites d'usage"
+        ]
+      },
+      3: {
+        name: "Canva Pro - Abonnement 1 An",
+        category: "Design Graphique • Création Visuelle",
+        description: "Créez des designs professionnels avec accès illimité à toutes les ressources premium de Canva.",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Canva Pro - Créez comme un professionnel</h2>
+            <p>Débloquez la puissance complète de Canva avec plus de 100 millions de ressources premium, des outils avancés et des fonctionnalités collaboratives pour équipes. Canva Pro est la solution idéale pour les créateurs, marketeurs et entreprises.</p>
+            
+            <h3>Fonctionnalités incluses :</h3>
+            <ul>
+              <li>Plus de 100 millions de photos, vidéos et éléments premium</li>
+              <li>Suppression automatique d'arrière-plan en un clic</li>
+              <li>Animation de designs et création de GIFs</li>
+              <li>Planificateur de contenu pour les réseaux sociaux</li>
+              <li>Espace de travail illimité avec 1TB de stockage</li>
+              <li>Collaboration en temps réel avec votre équipe</li>
+            </ul>
+
+            <h3>Offre spéciale :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Durée</th>
+                <th>Prix normal</th>
+                <th>Prix promo</th>
+              </tr>
+              <tr>
+                <td>1 an</td>
+                <td>20 000 FCFA</td>
+                <td><strong>4 000 FCFA</strong></td>
+              </tr>
+            </table>
+
+            <p><strong>Économisez 80%</strong> avec cette offre limitée</p>
+          </div>
+        `,
+        features: [
+          "100M+ ressources premium",
+          "Suppression d'arrière-plan",
+          "Animation de designs",
+          "Planificateur de contenu",
+          "Collaboration en équipe",
+          "1TB de stockage"
+        ]
+      },
+      4: {
+        name: "Veo3 Promo Étudiant - 12 Mois",
+        category: "Intelligence Artificielle • Génération Vidéo",
+        description: "Offre spéciale limitée pour étudiants - Génération vidéo IA de haute qualité",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Veo3 Promo Étudiant - Offre Spéciale Limitée</h2>
+            <p>Profitez de l'offre spéciale Veo3 pour étudiants ! Accédez à la plateforme de génération vidéo IA la plus avancée à un prix exceptionnel. Cette offre est limitée et se termine le 9 décembre.</p>
+            
+            <h3>Fonctionnalités incluses :</h3>
+            <ul>
+              <li>Génération de vidéos haute qualité à partir de texte</li>
+              <li>Style et tonalité personnalisables</li>
+              <li>Durée de vidéo étendue</li>
+              <li>Résolution améliorée 1080p</li>
+              <li>Génération rapide sans file d'attente</li>
+              <li>Support multilingue</li>
+            </ul>
+
+            <h3>Offre limitée :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Durée</th>
+                <th>Prix normal</th>
+                <th>Prix étudiant</th>
+                <th>Validité</th>
+              </tr>
+              <tr>
+                <td>12 mois</td>
+                <td>15 000 FCFA</td>
+                <td><strong>2 500 FCFA</strong></td>
+                <td>Jusqu'au 9 décembre</td>
+              </tr>
+            </table>
+
+            <p><strong>⚠️ Offre limitée :</strong> Se termine le 9 décembre 2024<br>
+            <strong>📋 Conditions :</strong> Réservée aux étudiants (carte étudiante requise)<br>
+            <strong>⚡ Livraison :</strong> Sous 15 minutes après vérification</p>
+          </div>
+        `,
+        features: [
+          "Génération vidéo IA",
+          "Durée étendue",
+          "Résolution 1080p",
+          "Génération rapide",
+          "Style personnalisable",
+          "Offre limitée étudiants"
+        ]
+      },
+      5: {
+        name: "Veo3 Ultra Plan - Abonnement Mensuel",
+        category: "Intelligence Artificielle • Génération Vidéo Premium",
+        description: "Plan ultime pour création vidéo IA avancée avec fonctionnalités exclusives",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Veo3 Ultra Plan - La puissance ultime de l'IA vidéo</h2>
+            <p>Le plan Ultra de Veo3 vous donne accès à toutes les fonctionnalités avancées de génération vidéo par intelligence artificielle. Créez des vidéos professionnelles en quelques secondes à partir de simples descriptions textuelles.</p>
+            
+            <h3>Fonctionnalités premium :</h3>
+            <ul>
+              <li>Génération de vidéos jusqu'à 60 secondes</li>
+              <li>Résolution cinématographique 4K</li>
+              <li>Contrôle précis du style et de la tonalité</li>
+              <li>Génération prioritaire sans attente</li>
+              <li>Bibliothèque de styles exclusifs</li>
+              <li>Export sans filigrane</li>
+              <li>Support technique prioritaire</li>
+            </ul>
+
+            <h3>Plan disponible :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Prix</th>
+              </tr>
+              <tr>
+                <td>Ultra Plan</td>
+                <td>1 mois</td>
+                <td><strong>5 000 FCFA</strong></td>
+              </tr>
+            </table>
+
+            <p><strong>🎯 Idéal pour :</strong> Créateurs de contenu, marketeurs, entreprises<br>
+            <strong>⚡ Livraison :</strong> Sous 15 minutes après paiement<br>
+            <strong>🛡️ Garantie :</strong> Remplacement immédiat en cas de problème</p>
+          </div>
+        `,
+        features: [
+          "Vidéos jusqu'à 60s",
+          "Résolution 4K",
+          "Génération prioritaire",
+          "Styles exclusifs",
+          "Export sans filigrane",
+          "Support prioritaire"
+        ]
+      },
+      6: {
+        name: "Kling AI - Génération Vidéo IA",
+        category: "Intelligence Artificielle • Vidéo",
+        description: "Plateforme avancée de génération vidéo par intelligence artificielle",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Kling AI - La nouvelle génération de création vidéo IA</h2>
+            <p>Kling AI révolutionne la création vidéo avec des modèles d'IA de pointe. Transformez vos idées en vidéos époustouflantes en quelques secondes.</p>
+            
+            <h3>Plans disponibles :</h3>
+            
+            <h4>🔹 Plan Standard (5 000 FCFA/mois)</h4>
+            <ul>
+              <li>660 crédits par mois</li>
+              <li>3 300 images / 33 vidéos standard</li>
+              <li>Mise en file d'attente illimitée des tâches</li>
+              <li>Génération accélérée</li>
+              <li>Mode professionnel pour les vidéos</li>
+              <li>Suppression du filigrane</li>
+              <li>Extension de vidéo</li>
+              <li>Amélioration (upscaling) d'images</li>
+            </ul>
+
+            <h4>🚀 Plan Pro (19 000 FCFA/mois)</h4>
+            <ul>
+              <li>3 000 crédits par mois</li>
+              <li>15 000 images / 150 vidéos standard</li>
+              <li>Tout du plan Standard, plus :</li>
+              <li>Accès prioritaire aux nouvelles fonctionnalités</li>
+              <li>Génération ultra-rapide</li>
+              <li>Support technique dédié</li>
+              <li>Export en qualité maximale</li>
+              <li>API d'intégration</li>
+            </ul>
+
+            <p><strong>🎬 Parfait pour :</strong> Créateurs YouTube, publicitaires, entreprises de médias<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 20 minutes<br>
+            <strong>🔄 Renouvellement :</strong> Manuel chaque mois</p>
+          </div>
+        `,
+        features: [
+          "Génération vidéo IA avancée",
+          "Crédits mensuels",
+          "Suppression filigrane",
+          "Extension vidéo",
+          "Upscaling images",
+          "Mode professionnel"
+        ]
+      },
+      7: {
+        name: "Leonardo AI - Génération d'Images IA",
+        category: "Intelligence Artificielle • Art Digital",
+        description: "Plateforme professionnelle de génération d'images et d'art par IA",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Leonardo AI - Créez des œuvres d'art numériques uniques</h2>
+            <p>Leonardo AI est une plateforme de génération d'images par IA qui vous permet de créer des illustrations, des designs et des œuvres d'art professionnels en quelques secondes.</p>
+            
+            <h3>Inclus dans l'abonnement :</h3>
+            <ul>
+              <li><strong>8 500 jetons rapides par mois</strong> - Pour une génération immédiate</li>
+              <li><strong>Banque de 25 500 jetons</strong> - Pour une créativité optimale</li>
+              <li><strong>Créations privées</strong> - Vous seul décidez qui voit votre œuvre</li>
+              <li><strong>Capacité à entraîner 10 modèles d'IA personnels</strong> - Personnalisez vos créations</li>
+              <li><strong>Génération et mise à l'échelle de qualité améliorée</strong> - Des résultats professionnels</li>
+              <li><strong>Collections illimitées</strong> - Organisez toutes vos créations</li>
+              <li><strong>Exécuter 2 générations simultanément</strong> - Augmentez votre productivité</li>
+              <li><strong>Achetez et utilisez des jetons de recharge</strong> - Flexibilité totale</li>
+            </ul>
+
+            <h3>Plan disponible :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Jetons rapides</th>
+                <th>Prix</th>
+              </tr>
+              <tr>
+                <td>Abonnement mensuel</td>
+                <td>1 mois</td>
+                <td>8 500 + 25 500</td>
+                <td><strong>7 000 FCFA</strong></td>
+              </tr>
+            </table>
+
+            <p><strong>🎨 Idéal pour :</strong> Artistes digitaux, designers, illustrateurs, marketeurs<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 15 minutes<br>
+            <strong>🔄 Renouvellement :</strong> Mensuel, manuel</p>
+          </div>
+        `,
+        features: [
+          "8 500 jetons rapides/mois",
+          "25 500 jetons en banque",
+          "10 modèles IA personnels",
+          "Créations privées",
+          "2 générations simultanées",
+          "Collections illimitées"
+        ]
+      },
+      8: {
+        name: "ElevenLabs - Synthèse Vocale IA",
+        category: "Intelligence Artificielle • Audio",
+        description: "Synthèse vocale IA professionnelle avec voix naturelles et expressives",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>ElevenLabs - La voix de l'intelligence artificielle</h2>
+            <p>ElevenLabs propose des solutions de synthèse vocale IA de pointe pour créer des voix off naturelles, expressives et professionnelles pour vos projets audio et vidéo.</p>
+            
+            <h3>Plans disponibles :</h3>
+            
+            <h4>🔹 Plan Standard (2 500 FCFA/mois)</h4>
+            <ul>
+              <li><strong>30 000 crédits/mois</strong> - Pour vos voix off mensuels</li>
+              <li>Équivalent à <strong>30 minutes de synthèse vocale</strong></li>
+              <li>11 minutes de musique générée</li>
+              <li>750 secondes d'effets sonores</li>
+              <li>Licence commerciale incluse</li>
+              <li>Clonage vocal instantané</li>
+              <li>Voices IA naturelles et expressives</li>
+              <li>Support multilingue</li>
+              <li>Export en haute qualité</li>
+            </ul>
+
+            <h4>🚀 Plan Créateur (8 000 FCFA/mois)</h4>
+            <ul>
+              <li><strong>100 000 crédits/mois</strong> - Pour production intensive</li>
+              <li>Équivalent à <strong>100 minutes de synthèse vocale</strong></li>
+              <li>31 minutes de musique</li>
+              <li>2 500 secondes d'effets sonores</li>
+              <li>Tout du plan Standard, plus :</li>
+              <li>Clonage vocal professionnel avancé</li>
+              <li>Audio de qualité supérieure 192 kbps</li>
+              <li>Voices exclusives premium</li>
+              <li>Personnalisation vocale avancée</li>
+              <li>Support technique prioritaire</li>
+              <li>API avancée pour intégration</li>
+            </ul>
+
+            <p><strong>🎙️ Idéal pour :</strong> Créateurs de contenu, podcasteurs, publicitaires, entreprises<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 15 minutes<br>
+            <strong>💼 Usage :</strong> Commercial et professionnel</p>
+          </div>
+        `,
+        features: [
+          "Synthèse vocale IA",
+          "Voices naturelles",
+          "Clonage vocal",
+          "Licence commerciale",
+          "Export haute qualité",
+          "Support multilingue"
+        ]
+      },
+      9: {
+        name: "Midjourney - Génération d'Art IA",
+        category: "Intelligence Artificielle • Art Digital",
+        description: "Plateforme de génération d'art et d'images par intelligence artificielle",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Midjourney - L'art de l'intelligence artificielle</h2>
+            <p>Midjourney est l'une des plateformes de génération d'images IA les plus avancées, capable de créer des œuvres d'art uniques, des illustrations et des designs à partir de simples descriptions textuelles.</p>
+            
+            <h3>Plans disponibles :</h3>
+            
+            <h4>🔹 Plan Basic (7 000 FCFA/mois)</h4>
+            <ul>
+              <li>Générations limitées (~200 images/mois)</li>
+              <li>Génération de vidéos SD</li>
+              <li>Conditions commerciales générales</li>
+              <li>Recharges de crédits optionnelles</li>
+              <li>3 tâches rapides d'images en simultané</li>
+              <li>1 tâche rapide de vidéo en simultané</li>
+              <li>Utiliser l'éditeur sur les images téléversées</li>
+            </ul>
+
+            <h4>🚀 Plan Standard (9 500 FCFA/mois)</h4>
+            <ul>
+              <li><strong>625 crédits par mois</strong> - Générations illimitées</li>
+              <li>Tout ce qui est dans l'offre Basic, plus :</li>
+              <li>Accès à toutes les applications</li>
+              <li>Possibilité d'exécuter des workflows</li>
+              <li>Génération vidéo avancée</li>
+              <li>Aleph (montage vidéo)</li>
+              <li>Gen-4 (image vers vidéo)</li>
+              <li>Act-Two (capture de performance)</li>
+              <li>Amélioration de la résolution</li>
+              <li>Tous les modèles vidéo</li>
+              <li>Suppression des filigranes</li>
+              <li>100 Go de stockage d'actifs</li>
+              <li>Projets d'éditeur vidéo illimités</li>
+              <li>Support technique via le tableau de bord</li>
+            </ul>
+
+            <p><strong>🎨 Idéal pour :</strong> Artistes, designers, illustrateurs, agences créatives<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 20 minutes<br>
+            <strong>🔄 Renouvellement :</strong> Mensuel</p>
+          </div>
+        `,
+        features: [
+          "Génération d'art IA",
+          "Images haute qualité",
+          "Génération vidéo",
+          "Workflows avancés",
+          "Stockage cloud",
+          "Support technique"
+        ]
+      },
+      13: {
+        name: "Netflix Premium - 4K Ultra HD",
+        category: "Streaming • Divertissement",
+        description: "Profitez de Netflix en qualité 4K Ultra HD avec 4 écrans simultanés et téléchargements hors ligne.",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Netflix Premium - L'expérience de streaming ultime</h2>
+            <p>Accédez à toute la bibliothèque Netflix en qualité maximale avec le plan Premium. Regardez vos films et séries préférés sur 4 écrans en même temps, en Ultra HD 4K et HDR.</p>
+            
+            <h3>Caractéristiques du plan Premium :</h3>
+            <ul>
+              <li><strong>Qualité vidéo</strong> - Ultra HD 4K et HDR</li>
+              <li><strong>Écrans simultanés</strong> - 4 appareils en même temps</li>
+              <li><strong>Téléchargements</strong> - Téléchargez sur 6 appareils</li>
+              <li><strong>Profils</strong> - Jusqu'à 5 profils personnels</li>
+              <li><strong>Audio</strong> - Son spatial Dolby Atmos</li>
+              <li><strong>Sans publicité</strong> - Streaming continu sans interruption</li>
+            </ul>
+
+            <h3>Plan disponible :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Prix</th>
+              </tr>
+              <tr>
+                <td>Premium</td>
+                <td>Mensuel</td>
+                <td><strong>3 000 FCFA</strong></td>
+              </tr>
+            </table>
+
+            <p><strong>Livraison :</strong> Compte livré sous 15 minutes<br>
+            <strong>Garantie :</strong> 30 jours de remplacement gratuit<br>
+            <strong>Support :</strong> Assistance 24/7 via WhatsApp</p>
+          </div>
+        `,
+        features: [
+          "4K Ultra HD & HDR",
+          "4 écrans simultanés",
+          "Téléchargements 6 appareils",
+          "Dolby Atmos spatial",
+          "5 profils personnels",
+          "Sans publicité"
+        ]
+      },
+      14: {
+        name: "Prime Video - Abonnement Mensuel",
+        category: "Streaming • Films & Séries",
+        description: "Accédez à l'intégralité du catalogue Prime Video avec des contenus exclusifs Amazon",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Prime Video - Le cinéma à la demande</h2>
+            <p>Profitez de milliers de films, séries et documentaires exclusifs Amazon Prime Video. Accès illimité à tout le catalogue avec des nouveautés régulières.</p>
+            
+            <h3>Caractéristiques :</h3>
+            <ul>
+              <li><strong>Profil protégé par code PIN</strong> - Sécurité maximale</li>
+              <li><strong>Pas de déconnexion forcée</strong> - Streaming continu</li>
+              <li><strong>Compte entièrement privé</strong> - Pas de partage</li>
+              <li><strong>Qualité Full HD et 4K</strong> - Selon le contenu</li>
+              <li><strong>Téléchargements hors ligne</strong> - Regardez sans internet</li>
+              <li><strong>Contenus exclusifs Amazon</strong> - Productions originales</li>
+            </ul>
+
+            <h3>Plan disponible :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Prix</th>
+              </tr>
+              <tr>
+                <td>Abonnement mensuel</td>
+                <td>1 mois</td>
+                <td><strong>1 500 FCFA</strong></td>
+              </tr>
+            </table>
+
+            <p><strong>📱 Compatible :</strong> Tous appareils (smartphones, tablettes, TV, ordinateurs)<br>
+            <strong>⚡ Livraison :</strong> Sous 10 minutes après paiement<br>
+            <strong>🛡️ Sécurité :</strong> Compte personnel sécurisé</p>
+          </div>
+        `,
+        features: [
+          "Profil protégé PIN",
+          "Pas de déconnexion",
+          "Compte privé",
+          "Qualité Full HD/4K",
+          "Téléchargements hors ligne",
+          "Contenus exclusifs"
+        ]
+      },
+      15: {
+        name: "IPTV Premium - Plus de 15 000 Chaînes",
+        category: "Streaming • Télévision en Direct",
+        description: "Accédez à plus de 15 000 chaînes TV en direct du monde entier, avec toutes les chaînes africaines et internationales",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>IPTV Premium - La télévision du futur</h2>
+            <p>Notre service IPTV Premium vous donne accès à plus de 15 000 chaînes TV en direct de tous les pays, plus de 60 000 films et séries en VOD, et tous les événements sportifs en direct. Compatible avec tous vos appareils.</p>
+            
+            <h3>Contenu disponible :</h3>
+            <ul>
+              <li><strong>Chaînes TV en direct</strong> - 15 000+ chaînes du monde entier</li>
+              <li><strong>Toutes les chaînes africaines</strong> - Canal+, Nollywood, etc.</li>
+              <li><strong>Chaînes internationales</strong> - CNN, BBC, Sky News, Al Jazeera</li>
+              <li><strong>Événements sportifs</strong> - Tous les matchs en direct (football, NBA, etc.)</li>
+              <li><strong>Films & Séries VOD</strong> - 60 000+ titres, Netflix inclus</li>
+              <li><strong>Chaînes 4K</strong> - Qualité ultra haute définition</li>
+              <li><strong>Catch-up TV</strong> - Revoir les émissions des 7 derniers jours</li>
+            </ul>
+
+            <h3>Forfaits disponibles :</h3>
+            <table class="product-detail-table">
+              <tr>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Support</th>
+              </tr>
+              <tr>
+                <td>En ligne</td>
+                <td><strong>3 500 FCFA/mois</strong></td>
+                <td>Support à distance</td>
+              </tr>
+              <tr>
+                <td>Avec assistance</td>
+                <td><strong>5 000 FCFA/mois</strong></td>
+                <td>Installation sur place à Ouagadougou</td>
+              </tr>
+            </table>
+
+            <p><strong>📺 Support requis :</strong> Téléphone Android ou Télévision Smart TV<br>
+            <strong>⚡ Installation gratuite</strong> - Notre équipe vous aide à distance ou sur place<br>
+            <strong>🔄 Renouvellement :</strong> Mensuel, paiement facile</p>
+          </div>
+        `,
+        features: [
+          "15 000+ chaînes TV",
+          "Chaînes africaines incluses",
+          "Événements sportifs live",
+          "60 000+ VOD",
+          "Catch-up TV 7 jours",
+          "Installation assistée"
+        ]
+      },
+      16: {
+        name: "Minimax Audio - Synthèse Vocale IA",
+        category: "Intelligence Artificielle • Audio",
+        description: "Text-to-speech IA de haute qualité pour création de contenu audio professionnel",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Minimax Audio - La puissance de la voix IA</h2>
+            <p>Minimax Audio propose des solutions de synthèse vocale IA avancées pour créer des voix off naturelles, expressives et professionnelles. Parfait pour les créateurs de contenu, les entreprises et les professionnels du marketing.</p>
+            
+            <h3>Plans disponibles :</h3>
+            
+            <h4>🔹 Plan Starter (4 000 FCFA/mois)</h4>
+            <ul>
+              <li><strong>100 000 crédits par mois</strong> (~2 heures avec un modèle HD de haute qualité)</li>
+              <li>Bonus de 10 000 crédits (~12 minutes d'audio), non cumulables</li>
+              <li>Vitesse de génération vocale plus rapide</li>
+              <li>Génération de voix avec émotion et langue spécifiées</li>
+              <li>Clonage de jusqu'à 10 voix avec seulement 10 secondes d'audio</li>
+              <li>Licence pour utiliser MiniMax Audio à des fins commerciales</li>
+            </ul>
+
+            <h4>🚀 Plan Créateur (10 000 FCFA/mois)</h4>
+            <ul>
+              <li><strong>250 000 crédits par mois</strong> (~5 heures avec un modèle HD de haute qualité)</li>
+              <li>Bonus de 10 000 crédits (~12 minutes d'audio), non cumulables</li>
+              <li>Maximum de 5,2 heures d'audio par mois</li>
+              <li>Tout du plan Starter, plus :</li>
+              <li>Clonage de jusqu'à 30 voix avec seulement 10 secondes d'audio</li>
+              <li>Génération ultra-rapide</li>
+              <li>Support technique prioritaire</li>
+              <li>Accès aux nouvelles fonctionnalités en avant-première</li>
+              <li>API avancée pour intégration</li>
+            </ul>
+
+            <p><strong>🎙️ Parfait pour :</strong> Créateurs YouTube, podcasteurs, publicitaires, entreprises<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 15 minutes<br>
+            <strong>💼 Licence :</strong> Commerciale incluse</p>
+          </div>
+        `,
+        features: [
+          "Synthèse vocale HD",
+          "Clonage vocal",
+          "Voices émotionnelles",
+          "Licence commerciale",
+          "Génération rapide",
+          "Support multilingue"
+        ]
+      },
+      17: {
+        name: "Ideogram - Génération d'Images IA",
+        category: "Intelligence Artificielle • Design",
+        description: "Plateforme de génération d'images et designs par intelligence artificielle",
+        longDescription: `
+          <div class="product-full-description">
+            <h2>Ideogram - Créez des designs IA époustouflants</h2>
+            <p>Ideogram est une plateforme de génération d'images IA qui permet de créer des designs professionnels, des illustrations et des visuels marketing en quelques secondes.</p>
+            
+            <h3>Plans disponibles :</h3>
+            
+            <h4>🔹 Plan Basic (6 000 FCFA/mois)</h4>
+            <ul>
+              <li><strong>400 crédits prioritaires par mois</strong></li>
+              <li>100 crédits lents par jour</li>
+              <li>Mise en file d'attente de multiples générations</li>
+              <li>Édition dans Canvas (sans téléversement d'images)</li>
+              <li>Export de qualité</li>
+              <li>Recharge de 100 crédits prioritaires pour 4 $</li>
+            </ul>
+
+            <h4>🚀 Plan Plus (10 000 FCFA/mois)</h4>
+            <ul>
+              <li><strong>1 000 crédits prioritaires par mois</strong></li>
+              <li>Crédits lents illimités</li>
+              <li>Tout du plan Basic, plus :</li>
+              <li>Génération privée</li>
+              <li>Téléverser des images pour les éditer et les remixer</li>
+              <li>Cohérence des personnages</li>
+              <li>File d'attente de génération plus grande</li>
+              <li>Export de qualité maximale</li>
+              <li>Recharge de 150 crédits prioritaires pour 4 $</li>
+            </ul>
+
+            <p><strong>🎨 Idéal pour :</strong> Designers, marketeurs, créateurs de contenu, entreprises<br>
+            <strong>⚡ Livraison :</strong> Compte activé sous 15 minutes<br>
+            <strong>🔄 Renouvellement :</strong> Mensuel</p>
+          </div>
+        `,
+        features: [
+          "Génération d'images IA",
+          "Édition dans Canvas",
+          "Export haute qualité",
+          "Génération privée",
+          "Cohérence personnages",
+          "Crédits prioritaires"
+        ]
+      }
+    };
+
+    // ============================================
+    // STATE
+    // ============================================
+    let cart = JSON.parse(localStorage.getItem('flextech-cart')) || [];
+    let currentFilter = 'all';
+    let selectedDuration = 1;
+    let selectedProductId = null;
+    let selectedPlanIndex = 0;
+
+    // ============================================
+    // DOM ELEMENTS
+    // ============================================
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartCount = document.getElementById('cart-count');
+    const cartModal = document.getElementById('cart-modal');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+    const cartItems = document.getElementById('cart-items');
+    const cartEmpty = document.getElementById('cart-empty');
+    const cartFooter = document.getElementById('cart-footer');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const clearCartBtn = document.getElementById('clear-cart-btn');
+    const productsGrid = document.getElementById('products-grid');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const toastContainer = document.getElementById('toast-container');
+    const productDetailOverlay = document.getElementById('product-detail-overlay');
+    const productDetailModal = document.getElementById('product-detail-modal');
+    const productDetailClose = document.getElementById('product-detail-close');
+    const productDetailMain = document.getElementById('product-detail-main');
+
+    // ============================================
+    // FUNCTIONS
+    // ============================================
+
+    // Format price
+    function formatPrice(price) {
+      return price.toLocaleString('fr-FR') + ' FCFA';
+    }
+
+    // Show toast notification
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast success';
+      toast.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>${message}</span>
+      `;
+      toastContainer.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('hiding');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+      localStorage.setItem('flextech-cart', JSON.stringify(cart));
+    }
+
+    // Update cart UI
+    function updateCartUI() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      cartCount.classList.toggle('visible', totalItems > 0);
+
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'flex';
+        cartFooter.style.display = 'none';
+        // Remove all cart item elements
+        const items = cartItems.querySelectorAll('.cart-item');
+        items.forEach(item => item.remove());
+      } else {
+        cartEmpty.style.display = 'none';
+        cartFooter.style.display = 'block';
+
+        // Render cart items
+        const existingItems = cartItems.querySelectorAll('.cart-item');
+        existingItems.forEach(item => item.remove());
+
+        cart.forEach(item => {
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+          cartItem.innerHTML = `
+            <div class="cart-item-image">
+              <img src="${item.image}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}${item.plan ? ` - ${item.plan}` : ''}${item.duration ? ` (${item.duration} ${item.duration === 1 ? 'mois' : 'mois'})` : ''}</div>
+              <div class="cart-item-price">${formatPrice(item.price)}</div>
+              <div class="cart-item-controls">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.plan || ''}', ${item.duration || 1}, -1)">-</button>
+                <span class="cart-item-quantity">${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.plan || ''}', ${item.duration || 1}, 1)">+</button>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id}, '${item.plan || ''}', ${item.duration || 1})">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `;
+          cartItems.appendChild(cartItem);
+        });
+
+        // Update total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = formatPrice(total);
+      }
+    }
+
+    // Mettre à jour la sélection de durée
+    function updateDurationSelection(button, productId, planIndex) {
+      // Retirer la classe active de tous les boutons
+      const buttons = button.parentElement.querySelectorAll('.duration-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Ajouter la classe active au bouton cliqué
+      button.classList.add('active');
+      
+      // Mettre à jour les variables
+      selectedDuration = parseInt(button.getAttribute('data-duration'));
+      selectedProductId = productId;
+      selectedPlanIndex = planIndex;
+      
+      // Mettre à jour le prix affiché
+      const priceElement = document.querySelector('.product-detail-current');
+      const price = parseInt(button.getAttribute('data-price'));
+      const durationLabel = selectedDuration === 12 ? 'an' : 'mois';
+      priceElement.textContent = `${formatPrice(price)}/${durationLabel}`;
+    }
+
+    // Mettre à jour la sélection de plan
+    function updatePlanSelection(button, productId, planIndex) {
+      // Retirer la classe active de tous les boutons
+      const buttons = button.parentElement.querySelectorAll('.plan-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Ajouter la classe active au bouton cliqué
+      button.classList.add('active');
+      
+      // Mettre à jour les variables
+      selectedProductId = productId;
+      selectedPlanIndex = planIndex;
+      
+      // Mettre à jour le prix affiché
+      const priceElement = document.querySelector('.product-detail-current');
+      const price = parseInt(button.getAttribute('data-price'));
+      priceElement.textContent = `${formatPrice(price)}/mois`;
+    }
+
+    // Ajouter au panier avec plan
+    function addToCartWithPlan(productId, planIndex) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      let planName = "";
+      let planPrice = product.price;
+      let duration = 1;
+
+      if (product.hasPlans && product.plans && product.plans[planIndex]) {
+        const plan = product.plans[planIndex];
+        planName = plan.name;
+        planPrice = plan.price;
+        duration = plan.duration || 1;
+      }
+
+      const existingItem = cart.find(item => 
+        item.id === productId && 
+        item.plan === planName && 
+        item.duration === duration
+      );
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: planPrice,
+          image: product.image,
+          quantity: 1,
+          plan: planName,
+          duration: duration
+        });
+      }
+
+      saveCart();
+      updateCartUI();
+      showToast(`${product.name}${planName ? ` - ${planName}` : ''} ajouté au panier`);
+      closeProductDetail();
+
+      // Shake cart button
+      cartBtn.classList.add('shake');
+      setTimeout(() => cartBtn.classList.remove('shake'), 500);
+    }
+
+    // Acheter maintenant avec plan
+    function buyNowWithPlan(productId, planIndex) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      let planName = "";
+      let planPrice = product.price;
+      let duration = 1;
+
+      if (product.hasPlans && product.plans && product.plans[planIndex]) {
+        const plan = product.plans[planIndex];
+        planName = plan.name;
+        planPrice = plan.price;
+        duration = plan.duration || 1;
+      }
+
+      const message = `Bonjour Flex-Tech,\n\nJe souhaite acheter : *${product.name}${planName ? ` - ${planName}` : ''}*\n\nDurée : ${duration} ${duration === 1 ? 'mois' : 'mois'}\nPrix : ${formatPrice(planPrice)}\n\nJe suis intéressé(e) et je souhaite procéder au paiement.\n\nNom : \nEmail : \nTéléphone :`;
+      const whatsappUrl = `https://wa.me/22656853244?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Add to cart (fonction originale modifiée)
+    function addToCart(productId) {
+      addToCartWithPlan(productId, 0);
+    }
+
+    // Buy now (fonction originale modifiée)
+    function buyNow(productId) {
+      buyNowWithPlan(productId, 0);
+    }
+
+    // Get generic product detail
+    function getGenericProductDetail(productId) {
+      const product = products.find(p => p.id === productId);
+      return {
+        name: product.name,
+        category: product.category,
+        description: product.description,
+        longDescription: `
+          <div class="product-full-description">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <p>Ce produit premium est disponible immédiatement après paiement. Livraison sous 30 minutes avec support technique inclus.</p>
+            
+            <h3>Caractéristiques principales :</h3>
+            <ul>
+              <li>Accès complet aux fonctionnalités premium</li>
+              <li>Support technique dédié 7j/7</li>
+              <li>Garantie de remplacement en cas de problème</li>
+              <li>Livraison instantanée après paiement</li>
+              <li>Compte personnel et sécurisé</li>
+              <li>Mises à jour gratuites incluses</li>
+            </ul>
+            
+            <h3>Processus d'achat :</h3>
+            <ol>
+              <li>Ajoutez le produit à votre panier</li>
+              <li>Passez à la commande via WhatsApp</li>
+              <li>Effectuez le paiement par Mobile Money ou carte</li>
+              <li>Recevez vos accès par WhatsApp/email sous 30 minutes</li>
+              <li>Profitez de votre abonnement premium !</li>
+            </ol>
+            
+            <h3>Support et garantie :</h3>
+            <p>Support technique disponible 7j/7 via WhatsApp. Garantie de remplacement immédiat en cas de problème avec votre compte.</p>
+            
+            <p><strong>Prix : ${formatPrice(product.price)}${product.oldPrice ? ` <span style="text-decoration: line-through; color: var(--muted);">${formatPrice(product.oldPrice)}</span>` : ''}</strong></p>
+            <p><em>Économisez ${product.oldPrice ? Math.round((1 - product.price/product.oldPrice) * 100) : '0'}% avec cette offre</em></p>
+          </div>
+        `,
+        features: [
+          "Accès premium complet",
+          "Support technique 24/7",
+          "Livraison rapide (30 min)",
+          "Garantie satisfaction",
+          "Compte personnel",
+          "Mises à jour incluses"
+        ]
+      };
+    }
+
+    // Open product detail
+function openProductDetail(productId) {
+  const product = products.find(p => p.id === productId);
+  const detail = productDetails[productId] || getGenericProductDetail(productId);
+  
+  let badgeHTML = '';
+  if (product.badge) {
+    const badgeLabels = { new: 'Nouveau', hot: 'Populaire', promo: 'Promo' };
+    badgeHTML = `<span class="product-detail-badge ${product.badge}">${badgeLabels[product.badge]}</span>`;
+  }
+
+  // Initialiser les variables
+  selectedProductId = productId;
+  selectedPlanIndex = 0;
+  
+  // Déterminer le prix initial
+  let initialPrice = product.price;
+  let initialDuration = 1;
+  let initialPlanName = "";
+  
+  if (product.hasPlans && product.plans && product.plans.length > 0) {
+    initialPrice = product.plans[0].price;
+    initialDuration = product.plans[0].duration || 1;
+    initialPlanName = product.plans[0].name;
+  }
+
+  // Construire le HTML pour les plans/durées
+  let plansHTML = '';
+  if (product.hasPlans && product.plans && product.plans.length > 0) {
+    // Produits avec plusieurs plans (Minimax, Ideogram, Kling AI, etc.)
+    if (product.plans[0].name !== "1 Mois" && product.plans[0].name !== "12 Mois") {
+      plansHTML = `
+        <div class="plan-selection" style="margin-bottom: 1.5rem; width: 100%;">
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--card-foreground);">Sélectionnez un plan :</h4>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            ${product.plans.map((plan, index) => `
+              <button class="plan-btn ${index === 0 ? 'active' : ''}" 
+                      data-price="${plan.price}" 
+                      onclick="updatePlanSelection(this, ${productId}, ${index})">
+                ${plan.name}
+                <span class="plan-price">${formatPrice(plan.price)}/mois</span>
+                ${plan.savings ? `<span class="duration-savings">${plan.savings}</span>` : ''}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      // Produits avec choix de durée (1 mois / 12 mois)
+      plansHTML = `
+        <div class="duration-selection" style="margin-bottom: 1.5rem; width: 100%;">
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--card-foreground);">Durée de l'abonnement :</h4>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            ${product.plans.map((plan, index) => `
+              <button class="duration-btn ${index === 0 ? 'active' : ''}" 
+                      data-duration="${plan.duration}" 
+                      data-price="${plan.price}" 
+                      onclick="updateDurationSelection(this, ${productId}, ${index})">
+                ${plan.name}
+                <span class="duration-price">${formatPrice(plan.price)}</span>
+                ${plan.savings ? `<span class="duration-savings">${plan.savings}</span>` : ''}
+                ${plan.note ? `<span style="font-size: 0.7rem; color: var(--accent); margin-top: 0.125rem;">${plan.note}</span>` : ''}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  productDetailMain.innerHTML = `
+    <div class="product-detail-grid">
+      <div class="product-detail-images">
+        ${badgeHTML}
+        <div class="product-detail-main-image">
+          <img src="${product.image}" alt="${product.name}" loading="lazy">
+        </div>
+      </div>
+      
+      <div class="product-detail-info">
+        <div class="product-detail-category">${detail.category}</div>
+        <h1 class="product-detail-name">${product.name}</h1>
+        
+        <div class="product-detail-price" id="dynamic-price">
+          <div class="product-detail-current">${formatPrice(initialPrice)}${initialDuration === 12 ? '/an' : '/mois'}</div>
+          ${product.oldPrice ? `<div class="product-detail-old">${formatPrice(product.oldPrice)}</div>` : ''}
+        </div>
+        
+        <p class="product-detail-description">${detail.description}</p>
+        
+        ${plansHTML}
+        
+        <div class="product-detail-features">
+          <h3>Caractéristiques :</h3>
+          <ul>${detail.features.map(feature => `<li>${feature}</li>`).join('')}</ul>
+        </div>
+        
+        <div class="product-detail-actions">
+          <button class="product-detail-add-btn" onclick="addToCartWithPlan(${productId}, ${selectedPlanIndex})" style="width: 100%;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    ${detail.longDescription || ''}
+  `;
+
+  productDetailOverlay.classList.add('active');
+  productDetailModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+    // Close product detail
+    function closeProductDetail() {
+      productDetailOverlay.classList.remove('active');
+      productDetailModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Mettre à jour la quantité avec plan
+    function updateQuantity(productId, plan, duration, change) {
+      const item = cart.find(item => 
+        item.id === productId && 
+        item.plan === plan && 
+        item.duration === duration
+      );
+      
+      if (!item) return;
+
+      item.quantity += change;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => !(i.id === productId && i.plan === plan && i.duration === duration));
+      }
+
+      saveCart();
+      updateCartUI();
+    }
+
+    // Supprimer du panier avec plan
+    function removeFromCart(productId, plan, duration) {
+      cart = cart.filter(item => !(item.id === productId && item.plan === plan && item.duration === duration));
+      saveCart();
+      updateCartUI();
+    }
+
+    // Render products
+    function renderProducts() {
+      productsGrid.innerHTML = '';
+
+      const filteredProducts = currentFilter === 'all'
+        ? products
+        : products.filter(p => p.category === currentFilter);
+
+      filteredProducts.forEach((product, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.setAttribute('data-category', product.category);
+
+        let badgeHTML = '';
+        if (product.badge) {
+          const badgeLabels = { new: 'Nouveau', hot: 'Populaire', promo: 'Promo' };
+          badgeHTML = `<span class="product-badge ${product.badge}">${badgeLabels[product.badge]}</span>`;
+        }
+
+        // Afficher le prix le plus bas si plusieurs plans
+        let displayPrice = product.price;
+        if (product.hasPlans && product.plans && product.plans.length > 0) {
+          // Trouver le prix le plus bas parmi les plans
+          displayPrice = Math.min(...product.plans.map(p => p.price));
+        }
+
+        let priceHTML = `<span class="product-price">${formatPrice(displayPrice)}`;
+        if (product.oldPrice) {
+          priceHTML += `<span class="old-price">${formatPrice(product.oldPrice)}</span>`;
+        }
+        priceHTML += '</span>';
+
+        card.innerHTML = `
+          ${badgeHTML}
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProductDetail(${product.id})">Aperçu rapide</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">${product.category}</div>
+            <h3 class="product-name" onclick="openProductDetail(${product.id})">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+            <div class="product-footer">
+              ${priceHTML}
+              <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        `;
+
+        productsGrid.appendChild(card);
+
+        // Animate in with delay
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, index * 100);
+      });
+    }
+
+    // Open cart
+    function openCart() {
+      cartModal.classList.add('active');
+      cartOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close cart
+    function closeCart() {
+      cartModal.classList.remove('active');
+      cartOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Checkout
+    function checkout() {
+      if (cart.length === 0) return;
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      let message = "Bonjour Flex-Tech,\n\nJe souhaite commander les produits suivants :\n\n";
+
+      cart.forEach(item => {
+        const planText = item.plan ? ` - ${item.plan}` : '';
+        const durationText = item.duration ? ` (${item.duration} ${item.duration === 1 ? 'mois' : 'mois'})` : '';
+        message += `• ${item.name}${planText}${durationText} x${item.quantity} - ${formatPrice(item.price * item.quantity)}\n`;
+      });
+
+      message += `\n*Total : ${formatPrice(total)}*\n\nInformations de livraison :\n- Nom : \n- Email : \n- Téléphone : \n\nJe suis prêt(e) à effectuer le paiement.`;
+
+      const whatsappUrl = `https://wa.me/22656853244?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Clear cart
+    function clearCart() {
+      cart = [];
+      saveCart();
+      updateCartUI();
+    }
+
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Cart modal
+    cartBtn.addEventListener('click', openCart);
+    cartCloseBtn.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    // Checkout
+    checkoutBtn.addEventListener('click', checkout);
+
+    // Clear cart
+    clearCartBtn.addEventListener('click', clearCart);
+
+    // Filter tabs
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentFilter = tab.getAttribute('data-filter');
+        renderProducts();
+      });
+    });
+
+    // Product detail modal
+    productDetailClose.addEventListener('click', closeProductDetail);
+    productDetailOverlay.addEventListener('click', closeProductDetail);
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (productDetailModal.classList.contains('active')) {
+          closeProductDetail();
+        }
+        if (cartModal.classList.contains('active')) {
+          closeCart();
+        }
+      }
+    });
+
+    // ============================================
+    // INITIALIZATION
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      updateCartUI();
+
+      // Observe product cards for animation
+      setTimeout(() => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card').forEach(card => {
+          observer.observe(card);
+        });
+      }, 100);
+    });
+  </script>
+</body>
+</html>
