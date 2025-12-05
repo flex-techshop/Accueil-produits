@@ -2068,26 +2068,49 @@
      <!-- COPIEZ-CE CODE -->
 <a href="https://flex-techshop.github.io/instructions-pour-payer-/" 
    class="checkout-btn" 
-   id="checkout-btn">
-  Payer Maintenant
+   id="checkout-btn"
+   target="_blank"
+   rel="noopener noreferrer">
+    Payer Maintenant
 </a>
 
 <style>
   .checkout-btn {
     display: inline-block;
-    padding: 12px 24px;
-    background: #4CAF50;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    text-align: center;
+    min-width: 200px;
   }
   
   .checkout-btn:hover {
-    background: #45a049;
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    text-decoration: none;
+  }
+  
+  .checkout-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Pour les mobiles */
+  @media (max-width: 768px) {
+    .checkout-btn {
+      padding: 14px 28px;
+      font-size: 16px;
+      min-width: 180px;
+    }
   }
 </style>
       <button class="clear-cart-btn" id="clear-cart-btn">Vider le panier</button>
